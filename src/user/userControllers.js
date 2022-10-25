@@ -1,6 +1,16 @@
 const { response } = require('express');
 const User = require('./userModel');
 
+
+exports.login = async (request,response) => {
+    try {
+        response.send({user: request.user.username, text: "Succesfully logged in"});
+    } catch (error) {
+        console.log(error);
+        response.send({error: error.message})
+    }
+};
+
 exports.createUser = async (request, response) => {
     try {
         const newUser = await User.create(request.body);
