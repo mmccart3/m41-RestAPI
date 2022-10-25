@@ -14,7 +14,10 @@ exports.createUser = async (request, response) => {
 exports.listUsers = async (request, response) => {
     try {
         const users = await User.find({});
-        response.status(200).send({user: users});
+        const usernames = users.map((u) => {
+            return u.username;
+        })
+        response.status(200).send({users: usernames});
     } catch (error) {
         console.log(error);
         response.status(500).send({error: error.message});
