@@ -1,7 +1,7 @@
+const { response } = require('express');
 const User = require('./userModel');
 
 exports.createUser = async (request, response) => {
-    // console.log(request);
     try {
         const newUser = await User.create(request.body);
         response.status(201).send({user: newUser});
@@ -20,5 +20,15 @@ exports.listUsers = async (request, response) => {
         response.status(500).send({error: error.message});
     }
 };
+
+// Theoretical login:
+// ------------------
+// exports.login= async (request, response) => {
+//     try {
+//         const user = await User.findOne({username: req.body.username, password: req.body.password})
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
 
 
